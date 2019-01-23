@@ -6,7 +6,10 @@ ruby '2.4.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'devise', '~> 4.5'
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.2', '>= 4.2.1'
+gem 'simple_form', '~> 4.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -35,6 +38,14 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg', '~> 1.1', '>= 1.1.4'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

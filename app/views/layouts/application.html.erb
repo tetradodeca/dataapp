@@ -10,8 +10,9 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= link_to "Home", root_path %>
+    <!-- <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
     <% flash.class %>
       <% flash.each do |key,value| %>
         <% key %>

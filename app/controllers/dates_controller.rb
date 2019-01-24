@@ -14,6 +14,19 @@ class DatesController < ApplicationController
     end
   end
 
+  def edit
+    @date = Day.find(params[:id])
+  end
+
+  def update
+    @date = Day.find(params[:id])
+    if @date.update(date_params)
+      redirect_to date_path(id: @date.id)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @date = Day.find(params[:id])
     @date.destroy

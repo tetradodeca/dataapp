@@ -17,7 +17,13 @@
   color: #ffb300;
 }
 
-.trash {
+.trash, .editshow {
   color: #b71c1c;
   font-size: 0.7em;
+}
+
+.showdate {
+  font-size: 2em;
+  font-weight: bold;
+  text-decoration: underline;
 }

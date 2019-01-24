@@ -1,1 +1,6 @@
-<%= @date.date %>
+<div class="container-fluid">
+  <span class="showdate">Date: <%= @date.date %></span><%= link_to "<i class=\"fas fa-tools editshow\"></i> ".html_safe, edit_date_path(@date) %>
+
+</div>
+
+

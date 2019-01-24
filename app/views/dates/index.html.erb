@@ -1,10 +1,12 @@
 <div class="container-fluid">
-  <h3>Dates</h3>
+  <span class="showdate">Dates</span>
   
-  <% @dates.each do |day| %>
-    <%= link_to day.date, date_path(id: day.id) %>
-    <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete %>
-  <% end %>  
+  <div>
+    <% @dates.each do |day| %>
+      <%= link_to day.date, date_path(id: day.id) %>
+      <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete %>
+    <% end %>  
+  </div>
 </div>
 
 

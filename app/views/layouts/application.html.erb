@@ -7,17 +7,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   </head>
 
   <body>
-    <%= link_to "Home", root_path %>
-    <!-- <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> -->
     <% flash.class %>
-      <% flash.each do |key,value| %>
+      <%-flash.each do |key,value| %>
         <% key %>
-        <h3><%= value %></h3>
+        <div class="notice"><%= value %></div>
       <% end %>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <%= link_to "<i class=\"fas fa-ghost roll\"></i> ".html_safe, root_path, class: "navbar-brand" %>
+
+      <div class="form-inline my-2 my-lg-0">
+        <%= form_for @date, url: dates_path, method: :post do |form| %>
+          <%= form.number_field :date, class: "form-control mr-sm-2" %>
+          <%= form.submit "+", class: "btn btn-outline-warning my-2 my-sm-0" %>
+        <% end %>
+      </div>
+          
+    </nav>
 
     <%= yield %>
   </body>

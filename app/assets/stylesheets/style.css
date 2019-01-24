@@ -1,0 +1,23 @@
+/*.notice {
+  position: absolute;
+  text-align: center;
+  font-weight: 300;
+  top: 70px;
+  right:0px;
+  padding: 10px 20px;
+  background: rgba(255, 152, 0, 0.7);
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  z-index:1040; 
+}*/
+
+.roll {
+  font-size: 2em;
+  color: #ffb300;
+}
+
+.trash {
+  color: #b71c1c;
+  font-size: 0.7em;
+}

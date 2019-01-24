@@ -5,16 +5,12 @@ class DatesController < ApplicationController
     @date = Day.new
   end
 
-  # def new
-  #   @date = Day.new
-  # end
-
   def create
     @date = Day.new(date_params)
     if @date.save
       redirect_to root_path
     else
-      render :new
+      redirect_to root_path
     end
   end
 

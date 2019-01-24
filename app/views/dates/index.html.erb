@@ -1,19 +1,10 @@
 <div class="container-fluid">
-  <div class="form-inline">
-    <%= form_for @date, url: dates_path, method: :post do |form| %>
-    <%= form.number_field :date, class: "form-control" %>
-    <%= form.submit "Add", class: "btn btn-primary" %>
-  <% end %>
-  </div>
-
-  <hr>
-
-
+  <h3>Dates</h3>
+  
   <% @dates.each do |day| %>
     <%= link_to day.date, date_path(id: day.id) %>
-    <%= link_to "Delete", date_path(id: day.id), method: :delete %>
-  <% end %>
-  
+    <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete %>
+  <% end %>  
 </div>
 
 

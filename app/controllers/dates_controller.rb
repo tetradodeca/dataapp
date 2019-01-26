@@ -8,7 +8,7 @@ class DatesController < ApplicationController
   def create
     @date = Day.new(date_params)
     if @date.save
-      redirect_to root_path
+      redirect_to date_path(id: @date.id)
     else
       redirect_to root_path
     end
@@ -35,6 +35,8 @@ class DatesController < ApplicationController
 
   def show
     @date = Day.find(params[:id])
+    @record = @date.records.new
+    @records = Day.find(params[:id]).records
   end
 
   private

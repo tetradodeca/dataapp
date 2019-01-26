@@ -12,6 +12,9 @@
   z-index:1040; 
 }*/
 
+
+
+
 .roll {
   font-size: 2em;
   color: #ffb300;
@@ -26,4 +29,20 @@
   font-size: 2em;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.link {
+  color: black;
+}
+
+.link:hover {
+  color: #ff6d00;
+}
+
+/*.link:visited {
+
+}*/
+
+body {
+  background-color: #eeeeee;
 }

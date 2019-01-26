@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_140159) do
+ActiveRecord::Schema.define(version: 2019_01_25_084442) do
 
   create_table "days", force: :cascade do |t|
     t.integer "date"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer "zone"
+    t.integer "time_start"
+    t.integer "time_end"
+    t.integer "total"
+    t.string "activity"
+    t.integer "day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_records_on_day_id"
   end
 
   create_table "users", force: :cascade do |t|

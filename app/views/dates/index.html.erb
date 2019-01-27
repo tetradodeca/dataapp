@@ -1,10 +1,37 @@
+
 <div class="container-fluid">
-  <span class="showdate">Dates Index</span>
+
+<div class="row dashboard">
+  <div class="container-fluid">
+    Total days: <%= @dates.count %> |
+    Total Records: <%= @records.count %> |
+    Feeding average per zone: <%= @feeding_average %> mins<br>
+    Maximum feeding time: <%= @feeding_max %> mins |
+    Shortest feeding time: <%= @feeding_min %> mins |
+    Most Frequented Zone: <%= @most_frequented_zone %>
+  </div>
+</div>
+
+  <span class="showdate">Index</span>
   
   <div>
     <% @dates.each do |day| %>
       <%= link_to day.date, date_path(id: day.id), class: "link" %>
       <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete %>
+
+      <br>
+      
+      <% day.records.each do |record| %>
+        From: <%= record.time_start %>
+        To: <%= record.time_end %>
+        Time: <%= record.total %> mins
+        Zone: <%= record.zone %>
+        Activity: <%= record.activity %>
+        <br>      
+      <% end %>
+      
+      <hr>
+
     <% end %>  
   </div>
 </div>

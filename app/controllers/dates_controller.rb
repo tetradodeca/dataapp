@@ -3,6 +3,14 @@ class DatesController < ApplicationController
   def index
     @dates = Day.all
     @date = Day.new
+    @records = Record.all
+    feeding_total_time = Record.where(activity: "Feeding").pluck(:total)
+    @feeding_average = feeding_total_time.reduce(:+).fdiv(feeding_total_time.size).round(0)
+    @feeding_max = Record.where(activity: "Feeding").pluck(:total).max
+    @feeding_min = Record.where(activity: "Feeding").pluck(:total).min
+    zone_array = Record.pluck(:zone)
+    @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
+
   end
 
   def create

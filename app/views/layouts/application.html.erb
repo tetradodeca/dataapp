@@ -23,13 +23,13 @@
 
       <div class="form-inline my-2 my-lg-0">
         <%= form_for @date, url: dates_path, method: :post do |form| %>
-          <%= form.number_field :date, class: "form-control mr-sm-2" %>
+          <%= form.number_field :date, class: "form-control mr-sm-2", placeholder: "DDMMYY" %>
           <%= form.submit "+", class: "btn btn-outline-warning my-2 my-sm-0" %>
         <% end %>
       </div>
           
     </nav>
-
+    
     <%= yield %>
   </body>
 </html>

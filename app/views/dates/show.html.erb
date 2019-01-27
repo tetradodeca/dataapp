@@ -57,7 +57,7 @@
     Zone: <%= record.zone %>
     Activity: <%= record.activity %>
 
-    <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_record_path(date_id: @date.id, id: record.id), method: :delete %>
+    <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_record_path(date_id: @date.id, id: record.id), method: :delete %><br>
   <% end %>
 
 </div>

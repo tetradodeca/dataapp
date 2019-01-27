@@ -11,9 +11,11 @@
   border-radius: 20px;
   z-index:1040; 
 }*/
-
-
-
+.dashboard {
+  background-color: #2E2E2E;
+  color: #ffb300;
+  font-size: 1.1em;
+}
 
 .roll {
   font-size: 2em;
@@ -33,6 +35,8 @@
 
 .link {
   color: black;
+  text-decoration: underline;
+  font-size: 1.5em;
 }
 
 .link:hover {

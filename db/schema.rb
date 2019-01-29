@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_01_25_084442) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.integer "zone"
+    t.string "zone"
     t.integer "time_start"
     t.integer "time_end"
     t.integer "total"

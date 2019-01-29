@@ -1,7 +1,7 @@
 class CreateRecords < ActiveRecord::Migration[5.2]
   def change
     create_table :records do |t|
-      t.integer :zone
+      t.string :zone
       t.integer :time_start
       t.integer :time_end
       t.integer :total

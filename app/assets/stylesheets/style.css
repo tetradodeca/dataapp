@@ -11,10 +11,20 @@
   border-radius: 20px;
   z-index:1040; 
 }*/
+.home {
+  font-family: 'Finger Paint', cursive;
+  color: #ffb300;
+  font-size: 35px;
+}
+
 .dashboard {
   background-color: #2E2E2E;
   color: #ffb300;
   font-size: 1.1em;
+}
+
+.dashdata {
+  color: #ff6f00;
 }
 
 .roll {
@@ -42,10 +52,6 @@
 .link:hover {
   color: #ff6d00;
 }
-
-/*.link:visited {
-
-}*/
 
 body {
   background-color: #eeeeee;

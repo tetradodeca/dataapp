@@ -4,14 +4,18 @@
 
   <br><br>
 
+<!-- ////////////////////////////// form ///////////////////////////-->
+
   <div class="row">
     <div class="col">
       <%= form_for @record, url: date_records_path(date_id: @date.id), method: :post do |f| %>
-      <%= f.number_field :time_start, class: "form-control", placeholder: "Time Start" %>
+      <%= f.label :time_start %>
+      <%= f.number_field :time_start, class: "form-control", placeholder: "eg. 1930" %>
     </div>
 
     <div class="col">
-      <%= f.number_field :time_end, class: "form-control", placeholder: "Time End" %>
+      <%= f.label :time_end %>
+      <%= f.number_field :time_end, class: "form-control", placeholder: "eg. 2045" %>
     </div>
   </div>
 
@@ -19,24 +23,28 @@
 
   <div class="row">
     <div class="container-fluid">
+      <%= f.label :Location %>
       <%= f.select :zone, [
-        ['Hay Feeder Box Front', 1], 
-        ['Grass Feeder Box', 2], 
-        ['Hay Feeder Box Pool', 3], 
-        ['Feedpod', 4], 
-        ['Exhibit Left Facing', 5], 
-        ['Exhibit Right Facing', 6], 
-        ['Exhibit BOH Facing', 7]], 
-        {}, {class: "form form-group form-control", size: "7"} %>
+        ['Hay Feeder Box Front', 'Hay Feeder Box Front'], 
+        ['Grass Feeder Box', 'Grass Feeder Box'], 
+        ['Hay Feeder Box Pool', 'Hay Feeder Box Pool'], 
+        ['Feedpod', 'Feedpod'],
+        ['Front of exhibit', 'Front of exhibit'],
+        ['Exhibit Left Facing', 'Exhibit Left Facing'], 
+        ['Exhibit Right Facing', 'Exhibit Right Facing'], 
+        ['Exhibit BOH Facing', 'Exhibit BOH Facing']], 
+        {}, {class: "form form-group form-control", size: "8"} %>
     </div>
   </div>
 
   <div class="row">
     <div class="container-fluid">
+      <%= f.label :Activity %>
       <%= f.select :activity, [
         ['Feeding', 'Feeding'],
+        ['Scatter Feed', 'Scatter Feed'],
         ['Other', 'Other']],
-        {}, {class: "form form-group form-control", size: "2"} %>
+        {}, {class: "form form-group form-control", size: "3"} %>
     </div>
   </div>
 
@@ -50,12 +58,14 @@
 
   <hr>
 
+  <!-- //////////////////////// records for the day /////////////////////////  -->
+
   <% @records.each do |record| %>
-    From: <%= record.time_start %>
-    To: <%= record.time_end %>
-    Time: <%= record.total %> mins
-    Zone: <%= record.zone %>
-    Activity: <%= record.activity %>
+    ● <strong>From: </strong><%= record.time_start %>
+    <strong>To: </strong><%= record.time_end %>
+    <strong>Time: </strong><%= record.total %> mins
+    <strong>Zone: </strong><%= record.zone %>
+    <strong>Activity: </strong><%= record.activity %>
 
     <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_record_path(date_id: @date.id, id: record.id), method: :delete %><br>
   <% end %>

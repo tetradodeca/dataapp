@@ -1,34 +1,57 @@
-
 <div class="container-fluid">
 
-<div class="row dashboard">
-  <div class="container-fluid">
-    Total days: <%= @dates.count %> |
-    Total Records: <%= @records.count %> |
-    Feeding average per zone: <%= @feeding_average %> mins<br>
-    Maximum feeding time: <%= @feeding_max %> mins |
-    Shortest feeding time: <%= @feeding_min %> mins |
-    Most Frequented Zone: <%= @most_frequented_zone %>
+<!-- //////////////////////// overall data dashboard for without feedpod /////////////////////////  -->
+
+  <div class="row dashboard">
+    <div class="container-fluid">
+      OVERALL DATA<br>
+      Total days: <span class="dashdata"><%= @dates.count %></span>&nbsp;&nbsp;&nbsp;
+      Total Records: <span class="dashdata"><%= @records.count %></span>&nbsp;&nbsp;&nbsp;
+      Feeding average per zone: <span class="dashdata"><%= @feeding_average %> mins</span><br>
+      Longest feeding time: <span class="dashdata"><%= @feeding_max %> mins</span>&nbsp;&nbsp;&nbsp;
+      Shortest feeding time: <span class="dashdata"><%= @feeding_min %> mins</span>&nbsp;&nbsp;&nbsp;
+      Most Frequented Zone: <span class="dashdata"><%= @most_frequented_zone %></span>
+    </div>
   </div>
-</div>
 
   <span class="showdate">Index</span>
+
+<!-- //////////////////////// all dates records index /////////////////////////  -->
   
   <div>
     <% @dates.each do |day| %>
       <%= link_to day.date, date_path(id: day.id), class: "link" %>
-      <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete %>
+      <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete, data: {confirm: "Delete: Are you sure?"} %>
 
       <br>
       
+      <% arr = [] %>
+      <% arr2 = []%>
+      <% arr3 = [] %>
+
       <% day.records.each do |record| %>
-        From: <%= record.time_start %>
-        To: <%= record.time_end %>
-        Time: <%= record.total %> mins
-        Zone: <%= record.zone %>
-        Activity: <%= record.activity %>
-        <br>      
+        ● <strong>From: </strong><%= record.time_start %>&nbsp;
+        <strong>To: </strong><%= record.time_end %>&nbsp;
+        <strong>Time: </strong><%= record.total %> mins&nbsp;
+        <strong>Zone: </strong><%= record.zone %>&nbsp;
+        <strong>Activity: </strong><%= record.activity %>&nbsp;
+        <br>
+
+        <% if record.activity == "Feeding" || "Scatter Feed" %>
+          <% arr << record.total %>
+        <% end %>
       <% end %>
+        
+      <br>
+      
+      <div class="dashboard">
+        &nbsp;&nbsp;&nbsp;
+        Total Feeding time: <span class="dashdata"><%= arr.inject(:+) %> mins</span>&nbsp;&nbsp;&nbsp;
+        Longest Feeding Time: <span class="dashdata"><%= arr.max %> mins</span>&nbsp;&nbsp;&nbsp;
+        Shortest Feeding Time: <span class="dashdata"><%= arr.min %> mins</span>&nbsp;&nbsp;&nbsp;
+      </div>
+         
+      <br>
       
       <hr>
 

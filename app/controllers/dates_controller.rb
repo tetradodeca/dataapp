@@ -4,10 +4,15 @@ class DatesController < ApplicationController
     @dates = Day.all
     @date = Day.new
     @records = Record.all
-    feeding_total_time = Record.where(activity: "Feeding").pluck(:total)
-    @feeding_average = feeding_total_time.reduce(:+).fdiv(feeding_total_time.size).round(0)
-    @feeding_max = Record.where(activity: "Feeding").pluck(:total).max
-    @feeding_min = Record.where(activity: "Feeding").pluck(:total).min
+    feeding_total_time = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total)
+    if feeding_total_time.count >= 1
+      @feeding_average = feeding_total_time.reduce(:+).fdiv(feeding_total_time.size).round(0)
+    else
+      @feeding_average = 0
+    end
+
+    @feeding_max = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
+    @feeding_min = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
     zone_array = Record.pluck(:zone)
     @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
 

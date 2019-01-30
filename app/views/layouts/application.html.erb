@@ -22,14 +22,16 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <%= link_to "CWANG", root_path, class: "navbar-brand home animated pulse" %>
+      <% if current_page?(dates_path) || current_page?(root_path) %>
+        <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %>
+      <% elsif current_page?(feedpod_dates_path) %>
+        <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
+      <% else %>
+        <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %> |
+        <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
+      <% end %>
 
-      <div class="form-inline my-2 my-lg-0">
-        <%= form_for @date, url: dates_path, method: :post do |form| %>
-          <%= form.number_field :date, class: "form-control mr-sm-2", placeholder: "DDMMYY" %>
-          <%= form.submit "+", class: "btn btn-outline-warning my-2 my-sm-0" %>
-        <% end %>
-      </div>
-          
+
     </nav>
     
     <%= yield %>

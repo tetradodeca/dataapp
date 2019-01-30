@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_25_084442) do
+ActiveRecord::Schema.define(version: 2019_01_30_065120) do
 
   create_table "days", force: :cascade do |t|
     t.integer "date"
+  end
+
+  create_table "feedpod_dates", force: :cascade do |t|
+    t.integer "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "feedpodrecords", force: :cascade do |t|
+    t.string "zone"
+    t.integer "time_start"
+    t.integer "time_end"
+    t.integer "total"
+    t.string "activity"
+    t.integer "feedpod_date_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feedpod_date_id"], name: "index_feedpodrecords_on_feedpod_date_id"
   end
 
   create_table "records", force: :cascade do |t|

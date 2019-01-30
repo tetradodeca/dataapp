@@ -1,6 +1,7 @@
 class DatesController < ApplicationController
 
   def index
+    # @dates = Day.all.order("created_at DESC")
     @dates = Day.all
     @date = Day.new
     @records = Record.all
@@ -23,7 +24,7 @@ class DatesController < ApplicationController
     if @date.save
       redirect_to date_path(id: @date.id)
     else
-      redirect_to root_path
+      render :index
     end
   end
 

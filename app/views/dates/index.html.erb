@@ -4,17 +4,38 @@
 
   <div class="row dashboard">
     <div class="container-fluid">
-      OVERALL DATA<br>
+      <br>
+      <span class="showdate">OVERALL DATA</span><br>
       Total days: <span class="dashdata"><%= @dates.count %></span>&nbsp;&nbsp;&nbsp;
       Total Records: <span class="dashdata"><%= @records.count %></span>&nbsp;&nbsp;&nbsp;
       Feeding average per zone: <span class="dashdata"><%= @feeding_average %> mins</span><br>
       Longest feeding time: <span class="dashdata"><%= @feeding_max %> mins</span>&nbsp;&nbsp;&nbsp;
       Shortest feeding time: <span class="dashdata"><%= @feeding_min %> mins</span>&nbsp;&nbsp;&nbsp;
       Most Frequented Zone: <span class="dashdata"><%= @most_frequented_zone %></span>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <%= form_for @date, url: dates_path, method: :post do |form| %>
+            <%= form.number_field :date, class: "form-control mr-sm-2 input", placeholder: "DDMMYY" %><br>
+            <%= form.submit "New Date", class: "btn btn-outline-warning my-2 my-sm-0" %>
+          <% end %>
+        </div>
+        <div class="col"></div>
+      </div>
+      
+    
     </div>
   </div>
 
-  <span class="showdate">Index</span>
+  <div class="row">
+    <div class="col"></div>
+      <div class="showdate col">Dates <span class="withwithout">WITHOUT</span> Feedpod</div>
+    <div class="col"></div>
+  </div>
+  
 
 <!-- //////////////////////// all dates records index /////////////////////////  -->
   
@@ -29,7 +50,8 @@
       <% arr2 = []%>
       <% arr3 = [] %>
 
-      <% day.records.each do |record| %>
+      <div class="records">
+        <% day.records.each do |record| %>
         ● <strong>From: </strong><%= record.time_start %>&nbsp;
         <strong>To: </strong><%= record.time_end %>&nbsp;
         <strong>Time: </strong><%= record.total %> mins&nbsp;
@@ -37,14 +59,16 @@
         <strong>Activity: </strong><%= record.activity %>&nbsp;
         <br>
 
-        <% if record.activity == "Feeding" || "Scatter Feed" %>
+        <% if record.activity == "Feeding" || record.activity == "Scatter Feed" %>
           <% arr << record.total %>
         <% end %>
       <% end %>
         
       <br>
+      </div>
       
-      <div class="dashboard">
+      
+      <div class="dashboard-date">
         &nbsp;&nbsp;&nbsp;
         Total Feeding time: <span class="dashdata"><%= arr.inject(:+) %> mins</span>&nbsp;&nbsp;&nbsp;
         Longest Feeding Time: <span class="dashdata"><%= arr.max %> mins</span>&nbsp;&nbsp;&nbsp;

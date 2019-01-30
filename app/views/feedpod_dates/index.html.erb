@@ -1,0 +1,86 @@
+<div class="container-fluid">
+
+<!-- //////////////////////// overall data dashboard for with feedpod /////////////////////////  -->
+
+  <div class="row dashboardfeedpod">
+    <div class="container-fluid">
+      <br>
+      <span class="showdate">OVERALL DATA</span><br>
+      Total days: <span class="dashdatafeed"><%= @dates.count %></span>&nbsp;&nbsp;&nbsp;
+      Total Records: <span class="dashdatafeed"><%= @feedpodrecords.count %></span>&nbsp;&nbsp;&nbsp;
+      Feeding average per zone: <span class="dashdatafeed"><%= @feeding_average %> mins</span><br>
+      Longest feeding time: <span class="dashdatafeed"><%= @feeding_max %> mins</span>&nbsp;&nbsp;&nbsp;
+      Shortest feeding time: <span class="dashdatafeed"><%= @feeding_min %> mins</span>&nbsp;&nbsp;&nbsp;
+      Most Frequented Zone: <span class="dashdatafeed"><%= @most_frequented_zone %></span>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <%= form_for @date, url: feedpod_dates_path, method: :post do |form| %>
+            <%= form.number_field :date, class: "form-control mr-sm-2 input", placeholder: "DDMMYY" %><br>
+            <%= form.submit "New Date", class: "btn btn-outline-light my-2 my-sm-0" %>
+          <% end %>
+        </div>
+        <div class="col"></div>
+      </div>
+      
+    
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col"></div>
+      <div class="showdate col">Dates <span class="withwithout">WITH</span> Feedpod</div>
+    <div class="col"></div>
+  </div>
+  
+
+<!-- //////////////////////// all dates records index /////////////////////////  -->
+  
+  <div>
+    <% @dates.each do |day| %>
+      <%= link_to day.date, feedpod_date_path(id: day.id), class: "link" %>
+      <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, feedpod_date_path(id: day.id), method: :delete, data: {confirm: "Delete: Are you sure?"} %>
+
+      <br>
+      
+      <% arr = [] %>
+      <% arr2 = []%>
+      <% arr3 = [] %>
+
+      <div class="records">
+        <% day.feedpodrecords.each do |record| %>
+        ● <strong>From: </strong><%= record.time_start %>&nbsp;
+        <strong>To: </strong><%= record.time_end %>&nbsp;
+        <strong>Time: </strong><%= record.total %> mins&nbsp;
+        <strong>Zone: </strong><%= record.zone %>&nbsp;
+        <strong>Activity: </strong><%= record.activity %>&nbsp;
+        <br>
+
+        <% if record.activity == "Feeding" || record.activity == "Scatter Feed" %>
+          <% arr << record.total %>
+        <% end %>
+      <% end %>
+        
+      <br>
+      </div>
+      
+      
+      <div class="dashboard-date-feed">
+        &nbsp;&nbsp;&nbsp;
+        Total Feeding time: <span class="dashdatafeed"><%= arr.inject(:+) %> mins</span>&nbsp;&nbsp;&nbsp;
+        Longest Feeding Time: <span class="dashdatafeed"><%= arr.max %> mins</span>&nbsp;&nbsp;&nbsp;
+        Shortest Feeding Time: <span class="dashdatafeed"><%= arr.min %> mins</span>&nbsp;&nbsp;&nbsp;
+      </div>
+         
+      <br>
+      
+      <hr>
+
+    <% end %>  
+  </div>
+</div>
+
+

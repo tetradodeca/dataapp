@@ -1,0 +1,10 @@
+<div class="container-fluid">
+<br>
+  <div class="form-inline my-2 my-lg-0">
+  <%= form_for @date, url: feedpod_date_path(id: @date.id), method: :put do |f| %>
+    <%= f.number_field :date, class: "form-control mr-sm-2" %>
+    <%= f.submit "update", class: "btn btn-outline-success my-2 my-sm-0" %>
+  <% end %>
+    <%= link_to "X", feedpod_date_path(id: @date.id), class: "btn btn-outline-danger" %>
+  </div>
+</div>

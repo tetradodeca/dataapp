@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <span class="showdate">Date: <%= @date.date %></span>
+  <%= link_to " <i class=\"fas fa-wrench editshow\"></i> ".html_safe, edit_feedpod_date_path(@date) %>
+
+  <br><br>
+
+<!-- ////////////////////////////// form ///////////////////////////-->
+
+  <div class="row">
+    <div class="col">
+      <%= form_for @feedpodrecord, url: feedpod_date_feedpod_records_path(feedpod_date_id: @date.id), method: :post do |f| %>
+      <%= f.label :time_start %>
+      <%= f.number_field :time_start, class: "form-control", placeholder: "eg. 1930" %>
+    </div>
+
+    <div class="col">
+      <%= f.label :time_end %>
+      <%= f.number_field :time_end, class: "form-control", placeholder: "eg. 2045" %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="container-fluid">
+      <%= f.label :Location %>
+      <%= f.select :zone, [
+        ['Hay Feeder Box Front', 'Hay Feeder Box Front'], 
+        ['Grass Feeder Box', 'Grass Feeder Box'], 
+        ['Hay Feeder Box Pool', 'Hay Feeder Box Pool'], 
+        ['Feedpod', 'Feedpod'],
+        ['Front of exhibit', 'Front of exhibit'],
+        ['Exhibit Left Facing', 'Exhibit Left Facing'], 
+        ['Exhibit Right Facing', 'Exhibit Right Facing'], 
+        ['Exhibit BOH Facing', 'Exhibit BOH Facing']], 
+        {}, {class: "form form-group form-control", size: "8"} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container-fluid">
+      <%= f.label :Activity %>
+      <%= f.select :activity, [
+        ['Feeding', 'Feeding'],
+        ['Scatter Feed', 'Scatter Feed'],
+        ['Other', 'Other']],
+        {}, {class: "form form-group form-control", size: "3"} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container-fluid">
+      <%= f.submit "Add Record", class: "btn btn-dark btn-lg btn-block" %>
+    </div>
+  </div>
+
+  <% end %>
+
+  <hr>
+
+  <!-- //////////////////////// records for the day /////////////////////////  -->
+
+  <% @feedpodrecords.each do |record| %>
+    ● <strong>From: </strong><%= record.time_start %>
+    <strong>To: </strong><%= record.time_end %>
+    <strong>Time: </strong><%= record.total %> mins
+    <strong>Zone: </strong><%= record.zone %>
+    <strong>Activity: </strong><%= record.activity %>
+
+    <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, feedpod_date_feedpod_record_path(feedpod_date_id: @date.id, id: record.id), method: :delete %><br>
+  <% end %>
+
+</div>

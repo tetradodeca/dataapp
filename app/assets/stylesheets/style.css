@@ -11,6 +11,10 @@
   border-radius: 20px;
   z-index:1040; 
 }*/
+body {
+  background-color: #eeeeee;
+}
+
 .home {
   font-family: 'Finger Paint', cursive;
   color: #ffb300;
@@ -21,6 +25,48 @@
   background-color: #2E2E2E;
   color: #ffb300;
   font-size: 1.1em;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.dashboardfeedpod {
+  background-color: #2E2E2E;
+  color: #66bb6a;
+  font-size: 1.1em;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.input {
+  text-align: center;
+}
+
+.showdate {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.dashdatafeed {
+  color: #d4e157;
+}
+
+.dashboard-date-feed {
+  background-color: #2E2E2E;
+  color: #66bb6a;
+  font-size: 1.1em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.dashboard-date {
+  background-color: #2E2E2E;
+  color: #ffb300;
+  font-size: 1.1em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .dashdata {
@@ -37,11 +83,6 @@
   font-size: 0.7em;
 }
 
-.showdate {
-  font-size: 2em;
-  font-weight: bold;
-  text-decoration: underline;
-}
 
 .link {
   color: black;
@@ -53,6 +94,9 @@
   color: #ff6d00;
 }
 
-body {
-  background-color: #eeeeee;
+.withwithout {
+  font-size: 1.5em;
+  text-decoration: underline;
+
 }
+

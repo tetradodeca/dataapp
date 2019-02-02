@@ -12,7 +12,8 @@
   z-index:1040; 
 }*/
 body {
-  background-color: #eeeeee;
+  background-color: #212121;
+  color: white;
 }
 
 .home {
@@ -85,7 +86,7 @@ body {
 
 
 .link {
-  color: black;
+  color: white;
   text-decoration: underline;
   font-size: 1.5em;
 }
@@ -100,3 +101,6 @@ body {
 
 }
 
+#insight {
+  text-align: center !important;
+}

@@ -1,8 +1,7 @@
 class DatesController < ApplicationController
 
   def index
-    # @dates = Day.all.order("created_at DESC")
-    @dates = Day.all
+    @dates = Day.all.order("created_at DESC")
     @date = Day.new
     @records = Record.all
     feeding_total_time = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total)

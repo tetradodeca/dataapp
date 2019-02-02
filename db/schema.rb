@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(version: 2019_01_30_065120) do
 
   create_table "days", force: :cascade do |t|
     t.integer "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "feedpod_dates", force: :cascade do |t|

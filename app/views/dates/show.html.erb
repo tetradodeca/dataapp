@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <span class="showdate">Date: <%= @date.date %></span>
+  <span class="showdate">W/O Feedpod Date: <%= @date.date %></span>
   <%= link_to " <i class=\"fas fa-wrench editshow\"></i> ".html_safe, edit_date_path(@date) %>
 
   <br><br>
@@ -50,7 +50,7 @@
 
   <div class="row">
     <div class="container-fluid">
-      <%= f.submit "Add Record", class: "btn btn-dark btn-lg btn-block" %>
+      <%= f.submit "Add Record", class: "btn btn-info btn-lg btn-block" %>
     </div>
   </div>
 
@@ -60,14 +60,29 @@
 
   <!-- //////////////////////// records for the day /////////////////////////  -->
 
-  <% @records.each do |record| %>
-    ● <strong>From: </strong><%= record.time_start %>
-    <strong>To: </strong><%= record.time_end %>
-    <strong>Time: </strong><%= record.total %> mins
-    <strong>Zone: </strong><%= record.zone %>
-    <strong>Activity: </strong><%= record.activity %>
-
-    <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_record_path(date_id: @date.id, id: record.id), method: :delete %><br>
-  <% end %>
+  <table class="table table-striped table-dark">
+    <thead class="thead">
+      <tr>
+        <th scope="col">TIME START</th>
+        <th scope="col">TIME END</th>
+        <th scope="col">TIME TOTAL</th>
+        <th scope="col">ZONE</th>
+        <th scope="col">TIME ACTIVITY</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <% @records.each do |record| %>
+    <tbody>
+      <tr>
+        <td><%= record.time_start %></td>
+        <td><%= record.time_end %></td>
+        <td><%= record.total %> mins</td>
+        <td><%= record.zone %></td>
+        <td><%= record.activity %></td>
+        <td><%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_record_path(date_id: @date.id, id: record.id), method: :delete %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
 
 </div>

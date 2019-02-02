@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :feedpod_records, only: [:create, :destroy]
   end
 
+  resources :insights, only: [:index]
+
   root 'dates#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -41,31 +41,42 @@
   
   <div>
     <% @dates.each do |day| %>
-      <%= link_to day.date, date_path(id: day.id), class: "link" %>
+      DATE: <%= link_to day.date, date_path(id: day.id), class: "link" %>
       <%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_path(id: day.id), method: :delete, data: {confirm: "Delete: Are you sure?"} %>
 
-      <br>
+      <br><br>
       
       <% arr = [] %>
       <% arr2 = []%>
       <% arr3 = [] %>
 
-      <div class="records">
-        <% day.records.each do |record| %>
-        ● <strong>From: </strong><%= record.time_start %>&nbsp;
-        <strong>To: </strong><%= record.time_end %>&nbsp;
-        <strong>Time: </strong><%= record.total %> mins&nbsp;
-        <strong>Zone: </strong><%= record.zone %>&nbsp;
-        <strong>Activity: </strong><%= record.activity %>&nbsp;
-        <br>
 
+      <table class="table table-striped table-dark">
+        <thead class="thead">
+          <tr>
+            <th scope="col">TIME START</th>
+            <th scope="col">TIME END</th>
+            <th scope="col">TIME TOTAL</th>
+            <th scope="col">ZONE</th>
+            <th scope="col">TIME ACTIVITY</th>
+          </tr>
+        </thead>
+        <% day.records.each do |record| %>
+        <tbody>
+          <tr>
+            <td><%= record.time_start %></td>
+            <td><%= record.time_end %></td>
+            <td><%= record.total %> mins</td>
+            <td><%= record.zone %></td>
+            <td><%= record.activity %></td>
+          </tr>
+        </tbody>
         <% if record.activity == "Feeding" || record.activity == "Scatter Feed" %>
           <% arr << record.total %>
         <% end %>
-      <% end %>
-        
-      <br>
-      </div>
+
+        <% end %>
+      </table>
       
       
       <div class="dashboard-date">

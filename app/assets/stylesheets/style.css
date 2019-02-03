@@ -16,6 +16,15 @@ body {
   color: white;
 }
 
+.dropdown-menu {
+  background-color: #33b5e5;
+  min-width: 14rem;
+}
+
+.dropdown-item {
+  font-weight: 500;
+}
+
 .home {
   font-family: 'Finger Paint', cursive;
   color: #ffb300;
@@ -109,4 +118,7 @@ thead {
   color: #33b5e5 !important;
 }
 
+/*.form-control {
+  text-align: center;
+}*/
 

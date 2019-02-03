@@ -21,18 +21,27 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to "CWANG", insights_path, class: "navbar-brand home animated pulse" %>
-      <% if current_page?(dates_path) || current_page?(root_path) %>
+      
+      <a class="navbar-brand home animated pulse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CWANG</a>
+
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "Full Data Insight", root_path, class: "dropdown-item" %>
+        <%= link_to "Exhibit Layout", statics_exhibit_path, class: "dropdown-item" %>
+        <div class="dropdown-divider"></div>
+        <%= link_to "Dev", statics_dev_path, class: "dropdown-item" %>
+      </div>
+
+      <% if current_page?(dates_path) %>
         <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %>
       <% elsif current_page?(feedpod_dates_path) %>
         <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
       <% else %>
         <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %> <span id="space">|</span>
         <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
+        
       <% end %>
-
-
     </nav>
+
     
     <%= yield %>
   </body>

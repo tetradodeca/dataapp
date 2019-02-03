@@ -5,17 +5,384 @@
   <table class="table table-striped table-dark">
     <thead>
       <tr>
-        <th scope="col">INSIGHTS</th>
-        <th scope="col">W/O FEEDPOD</th>
-        <th scope="col">WITH FEEDPOD</th>
+        <th scope="col", class="tableheader">TOTAL INSIGHTS</th>
+        <th scope="col", class="tableheader">W/O FEEDPOD</th>
+        <th scope="col", class="tableheader">WITH FEEDPOD</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Total number of days</td>
+        <td>Days of data collected</td>
         <td><%= @dates.count %></td>
         <td><%= @feedpoddates.count %></td>
       </tr>
+
+        
+      <tr>
+        <td>Total number of records</td>
+        <td><%= @records.count %></td>
+        <td><%= @feedpodrecords.count %></td>
+      </tr>
+
+      <tr>
+        <td>No. of non-feeding records</td>
+        <td><%= @other %></td>
+        <td><%= @feedpod_other %></td>
+      </tr>
+
+      <tr>
+        <td>Average feeding time per night</td>
+        <td><%= @feedingaveperday %> mins</td>
+        <td><%= @feedpod_feedingaveperday %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Longest feeding time</td>
+        <td><%= @feeding_max %> mins</td>
+        <td><%= @feedpodfeeding_max %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Shortest feeding time</td>
+        <td><%= @feeding_min %> mins</td>
+        <td><%= @feedpodfeeding_min %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Most frequented zone</td>
+        <td><%= @most_frequented_zone %></td>
+        <td><%= @feedpod_most_frequented_zone %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+<%# ------------------------------------------------------------------------- %>
+
+<br><br><br>
+
+
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">AVERAGE VISITS / NIGHT</th>
+        <th scope="col">W/O FEEDPOD</th>
+        <th scope="col">WITH FEEDPOD</th>
+      </tr>      
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Hay Feeder Box Front</td>
+        <td><%= @ave_haybox_front_per_night %> x</td>
+        <td><%= @feedpod_ave_haybox_front_per_night %> x</td>
+      </tr>
+
+      <tr>
+        <td>Hay Feeder Box Pool</td>
+        <td><%= @ave_boxpool %> x</td>
+        <td><%= @ave_feedpod_boxpool %> x</td>
+      </tr>
+
+      <tr>
+        <td>Grass Feeder Box</td>
+        <td><%= @ave_grassbox %> x</td>
+        <td><%= @ave_feedpod_grassbox %> x</td>
+      </tr>
+
+       <tr>
+        <td>Feedpod</td>
+        <td><%= @feedpod_ave %> x</td>
+        <td><%= @ave_feedpod_feedpod %> x</td>
+      </tr>
+
+      <tr>
+        <td>Front of exhibit</td>
+        <td><%= @ave_exhibitfront %> x</td>
+        <td><%= @feedpod_ave_exhibitfront %> x</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Left Facing</td>
+        <td><%= @leftfacing_ave %> x</td>
+        <td><%= @feedpod_leftfacing_ave %> x</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Right Facing</td>
+        <td><%= @rightfacing_ave %> x</td>
+        <td><%= @feedpod_rightfacing_ave %> x</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit BOH Facing</td>
+        <td><%= @bohfacing_ave %> x</td>
+        <td><%= @feedpod_bohfacing_ave %> x</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<%# ---------------------------------------------------------------------- %>
+
+  <br><br><br>
+
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col", class="tableheader">TOTAL TIMES VISITED</th>
+        <th scope="col", class="tableheader">W/O FEEDPOD</th>
+        <th scope="col", class="tableheader">WITH FEEDPOD</th>
+      </tr>      
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Hay Feeder Box Front</td>
+        <td><%= @boxfront %></td>
+        <td><%= @feedpodboxfront %></td>
+      </tr>
+
+      <tr>
+        <td>Hay Feeder Box Pool</td>
+        <td><%= @boxpool %></td>
+        <td><%= @feedpod_boxpool %></td>
+      </tr>
+
+      <tr>
+        <td>Grass Feeder Box</td>
+        <td><%= @grassbox %></td>
+        <td><%= @feedpod_grassbox %></td>
+      </tr>
+
+       <tr>
+        <td>Feedpod</td>
+        <td><%= @feedpod %></td>
+        <td><%= @feedpod_feedpod %></td>
+      </tr>
+
+      <tr>
+        <td>Front of exhibit</td>
+        <td><%= @exhibitfront %></td>
+        <td><%= @feedpodexhibitfront %></td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Left Facing</td>
+        <td><%= @leftfacing %></td>
+        <td><%= @feedpod_leftfacing %></td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Right Facing</td>
+        <td><%= @rightfacing %></td>
+        <td><%= @feedpod_rightfacing %></td>
+      </tr>
+
+      <tr>
+        <td>Exhibit BOH Facing</td>
+        <td><%= @bohfacing %></td>
+        <td><%= @feedpod_bohfacing %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+<%# ---------------------------------------------------------------------- %>
+
+  <br><br><br>
+
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">AVERAGE FEEDING TIME PER NIGHT</th>
+        <th scope="col">W/O FEEDPOD</th>
+        <th scope="col">WITH FEEDPOD</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Hay Feeder Box Front</td>
+        <td><%= @haybox_front_average_feeding_time %> mins</td>
+        <td><%= @feedpod_haybox_front_average_feeding_time %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Hay Feeder Box Pool</td>
+        <td><%= @boxpool_average_feeding_time %> mins</td>
+        <td><%= @feedpod_boxpool_average_feeding_time %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Grass Feeder Box</td>
+        <td><%= @grassbox_average_feeding_time %> mins</td>
+        <td><%= @feedpod_grassbox_average_feeding_time %> mins</td>
+      </tr>
+
+       <tr>
+        <td>Feedpod</td>
+        <td><%= @feedpod_average_feeding_time %> mins</td>
+        <td><%= @feedpod_feedpod_average_feeding_time %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Front of exhibit</td>
+        <td><%= @exhibitfront_average_feeding_time %> mins</td>
+        <td><%= @feedpod_exhibitfront_average_feeding_time %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Left Facing</td>
+        <td><%= @leftfacing_ave_feeding_time %> mins</td>
+        <td><%= @feedpod_leftfacing_ave_feeding_time %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Right Facing</td>
+        <td><%= @rightfacing_ave_feeding_time %> mins</td>
+        <td><%= @feedpod_rightfacing_ave_feeding_time %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit BOH Facing</td>
+        <td><%= @bohfacing_ave_feeding_time %> mins</td>
+        <td><%= @feedpod_bohfacing_ave_feeding_time %> mins</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<%# ---------------------------------------------------------------------- %>
+
+  <br><br><br>
+
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">LONGEST FEEDING TIME</th>
+        <th scope="col">W/O FEEDPOD</th>
+        <th scope="col">WITH FEEDPOD</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Hay Feeder Box Front</td>
+        <td><%= @haybox_front_max_total %> mins</td>
+        <td><%= @feedpod_haybox_front_max_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Hay Feeder Box Pool</td>
+        <td><%= @boxpool_max_total %> mins</td>
+        <td><%= @feedpod_boxpool_max_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Grass Feeder Box</td>
+        <td><%= @grassbox_max_total %> mins</td>
+        <td><%= @feedpod_grassbox_max_total %> mins</td>
+      </tr>
+
+       <tr>
+        <td>Feedpod</td>
+        <td><%= @feedpod_max_total %> mins</td>
+        <td><%= @feedpod_feedpod_max_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Front of exhibit</td>
+        <td><%= @exhibitfront_max_total %> mins</td>
+        <td><%= @feedpod_exhibitfront_max_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Left Facing</td>
+        <td><%= @leftfacing_max %> mins</td>
+        <td><%= @feedpod_leftfacing_max %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Right Facing</td>
+        <td><%= @rightfacing_max %> mins</td>
+        <td><%= @feedpod_rightfacing_max %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit BOH Facing</td>
+        <td><%= @bohfacing_max %> mins</td>
+        <td><%= @feedpod_bohfacing_max %> mins</td>
+      </tr>
+    </tbody>
+    
+  </table>
+
+
+<%# ---------------------------------------------------------------------- %>
+
+  <br><br><br>
+
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">SHORTEST FEEDING TIME</th>
+        <th scope="col">W/O FEEDPOD</th>
+        <th scope="col">WITH FEEDPOD</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Hay Feeder Box Front</td>
+        <td><%= @haybox_front_min_total %> mins</td>
+        <td><%= @feedpod_haybox_front_min_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Hay Feeder Box Pool</td>
+        <td><%= @boxpool_min_total %> mins</td>
+        <td><%= @feedpod_boxpool_min_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Grass Feeder Box</td>
+        <td><%= @grassbox_min_total %> mins</td>
+        <td><%= @feedpod_grassbox_min_total %> mins</td>
+      </tr>
+
+       <tr>
+        <td>Feedpod</td>
+        <td><%= @feedpod_min_total %> mins</td>
+        <td><%= @feedpod_feedpod_min_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Front of exhibit</td>
+        <td><%= @exhibitfront_min_total %> mins</td>
+        <td><%= @feedpod_exhibitfront_min_total %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Left Facing</td>
+        <td><%= @leftfacing_min %> mins</td>
+        <td><%= @feedpod_leftfacing_min %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit Right Facing</td>
+        <td><%= @rightfacing_min %> mins</td>
+        <td><%= @feedpod_rightfacing_min %> mins</td>
+      </tr>
+
+      <tr>
+        <td>Exhibit BOH Facing</td>
+        <td><%= @bohfacing_min %> mins</td>
+        <td><%= @feedpod_bohfacing_min %> mins</td>
+      </tr>
+
 
     </tbody>
   </table>

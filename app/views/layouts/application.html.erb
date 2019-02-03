@@ -27,7 +27,7 @@
       <% elsif current_page?(feedpod_dates_path) %>
         <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
       <% else %>
-        <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %> |
+        <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %> <span id="space">|</span>
         <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
       <% end %>
 

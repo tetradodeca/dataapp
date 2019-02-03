@@ -101,6 +101,12 @@ body {
 
 }
 
-#insight {
-  text-align: center !important;
+#space {
+  color: black;
 }
+
+thead {
+  color: #33b5e5 !important;
+}
+
+

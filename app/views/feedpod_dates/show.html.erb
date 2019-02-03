@@ -50,7 +50,7 @@
 
   <div class="row">
     <div class="container-fluid">
-      <%= f.submit "Add Record", class: "btn btn-info btn-lg btn-block" %>
+      <%= f.submit "Add Record", class: "btn btn-success btn-lg btn-block" %>
     </div>
   </div>
 
@@ -79,7 +79,7 @@
         <td><%= record.total %> mins</td>
         <td><%= record.zone %></td>
         <td><%= record.activity %></td>
-        <td><%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, date_record_path(date_id: @date.id, id: record.id), method: :delete %></td>
+        <td><%= link_to "<i class=\"fa fa-trash-alt trash\"></i> ".html_safe, feedpod_date_feedpod_record_path(feedpod_date_id: @date.id, id: record.id), method: :delete %></td>
       </tr>
     </tbody>
     <% end %>

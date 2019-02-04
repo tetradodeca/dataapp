@@ -33,6 +33,41 @@ class InsightsController < ApplicationController
     @other = Record.where(activity: "Other").count
     @feedpod_other = Feedpodrecord.where(activity: "Other").count
 
+    # find which feeder he goes first to the most
+    feedpoddays = FeedpodDate.all
+    arr_of_sec_zone = []
+    feedpoddays.each do |day|
+        arr_of_sec_zone << day.feedpodrecords[0][:zone]
+    end
+    @feedpod_first_box = arr_of_sec_zone.max_by { |i| arr_of_sec_zone.count(i) }
+
+    
+    def location_sequence(num)
+      days = Day.all
+      arr_of_zone = []
+      days.each do |day|
+        arr_of_zone << day.records[num][:zone]
+      end
+      return arr_of_zone.max_by { |i| arr_of_zone.count(i) }
+    end
+
+    def feedpod_location_sequence(num)
+      days = FeedpodDate.all
+      arr_of_zone = []
+      days.each do |day|
+        arr_of_zone << day.feedpodrecords[num][:zone]
+      end
+      return arr_of_zone.max_by { |i| arr_of_zone.count(i) }
+    end
+
+    @first_box = location_sequence(0)
+    @feedpod_first_box = location_sequence(0)
+    @second_box = location_sequence(1)
+    @feedpod_second_box = location_sequence(1)
+    @third_box = location_sequence(2)
+    @feedpod_third_box = location_sequence(2)
+    #-----------------------------------------------------------------------
+
 
     def total_times_visited(location)
       return Record.where(zone: location).count

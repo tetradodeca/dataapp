@@ -111,14 +111,15 @@ body {
 }
 
 #space {
-  color: black;
+  color: #343a40;
 }
 
 thead {
   color: #33b5e5 !important;
 }
 
-/*.form-control {
-  text-align: center;
-}*/
+#exhibitlabel {
+  width: 80%;
+  height: auto;
+}
 

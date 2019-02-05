@@ -14,7 +14,20 @@ class FeedpodDatesController < ApplicationController
     @feeding_max = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
     @feeding_min = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
     zone_array = Feedpodrecord.pluck(:zone)
-    @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
+    hash_count = zone_array.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+    empt_arr = []
+    hash_count.each do |k,v|
+      if v == hash_count.values.max
+        empt_arr << k
+      end
+    end
+
+    if empt_arr.count > 1
+      @most_frequented_zone = empt_arr.join(", ")
+    else 
+      @most_frequented_zone = empt_arr[0]
+    end
+    # @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
 
   end
 

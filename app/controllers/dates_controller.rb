@@ -14,7 +14,20 @@ class DatesController < ApplicationController
     @feeding_max = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
     @feeding_min = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
     zone_array = Record.pluck(:zone)
-    @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
+    hash_count = zone_array.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+    empt_arr = []
+    hash_count.each do |k,v|
+      if v == hash_count.values.max
+        empt_arr << k
+      end
+    end
+
+    if empt_arr.count > 1
+      @most_frequented_zone = empt_arr.join(",")
+    else 
+      @most_frequented_zone = empt_arr[0]
+    end
+    # @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
 
   end
 
@@ -43,7 +56,7 @@ class DatesController < ApplicationController
   def destroy
     @date = Day.find(params[:id])
     @date.destroy
-    redirect_to root_path
+    redirect_to dates_path
   end
 
   def show

@@ -26,12 +26,6 @@
       </tr>
 
       <tr>
-        <td>No. of non-feeding records (Other)</td>
-        <td><%= @other %></td>
-        <td><%= @feedpod_other %></td>
-      </tr>
-
-      <tr>
         <td>Average feeding time per night</td>
         <td><%= @feedingaveperday %> mins</td>
         <td><%= @feedpod_feedingaveperday %> mins</td>
@@ -56,21 +50,33 @@
       </tr>
 
       <tr>
-        <td>Popular first location</td>
+        <td>First location preference</td>
         <td><%= @first_box %></td>
         <td><%= @feedpod_first_box %></td>
       </tr>
 
       <tr>
-        <td>Popular second location</td>
+        <td>Second location preference</td>
         <td><%= @second_box %></td>
         <td><%= @feedpod_second_box %></td>
       </tr>
 
       <tr>
-        <td>Popular third location</td>
+        <td>Third location preference</td>
         <td><%= @third_box %></td>
         <td><%= @feedpod_third_box %></td>
+      </tr>
+
+      <tr>
+        <td>No. of non-feeding records (Other)</td>
+        <td><%= @other %></td>
+        <td><%= @feedpod_other %></td>
+      </tr>
+
+      <tr>
+        <td>Non feeding preferred location</td>
+        <td><%= @non_feeding %></td>
+        <td><%= @feedpod_non_feeding %></td>
       </tr>
 
       <tr>

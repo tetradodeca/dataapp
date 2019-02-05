@@ -24,31 +24,57 @@ class InsightsController < ApplicationController
     @feedpod_feedingaveperday = feedpod_feeding_total_time / feedpod_num_of_days
 
     # find most frequented zone
-    zone_array = Record.pluck(:zone)
-    @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
-    feedpod_zone_array = Feedpodrecord.pluck(:zone)
-    @feedpod_most_frequented_zone = feedpod_zone_array.max_by { |i| feedpod_zone_array.count(i) }
+    # zone_array = Record.pluck(:zone)
+    # @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
+    # feedpod_zone_array = Feedpodrecord.pluck(:zone)
+    # @feedpod_most_frequented_zone = feedpod_zone_array.max_by { |i| feedpod_zone_array.count(i) }
+
+    # find zones with same amount of frequent counts
+    def frequented_zone(database)
+      arr = database.pluck(:zone)
+      hash_count = arr.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+      empt_arr = []
+      hash_count.each do |k,v|
+        if v == hash_count.values.max
+          empt_arr << k
+        end
+      end
+
+      if empt_arr.count > 1
+        return empt_arr.join("<br>").html_safe
+      else 
+        return empt_arr[0]
+      end
+    end
+
+    @most_frequented_zone = frequented_zone(Record)
+    @feedpod_most_frequented_zone = frequented_zone(Feedpodrecord)
+
 
     # activity:other no.of records
     @other = Record.where(activity: "Other").count
     @feedpod_other = Feedpodrecord.where(activity: "Other").count
 
-    # find which feeder he goes first to the most
-    feedpoddays = FeedpodDate.all
-    arr_of_sec_zone = []
-    feedpoddays.each do |day|
-        arr_of_sec_zone << day.feedpodrecords[0][:zone]
-    end
-    @feedpod_first_box = arr_of_sec_zone.max_by { |i| arr_of_sec_zone.count(i) }
-
-    
+    # find which feeder he goes first to the most    
     def location_sequence(num)
       days = Day.all
       arr_of_zone = []
       days.each do |day|
         arr_of_zone << day.records[num][:zone]
       end
-      return arr_of_zone.max_by { |i| arr_of_zone.count(i) }
+      hash_count = arr_of_zone.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+      empt_arr = []
+      hash_count.each do |k,v|
+        if v == hash_count.values.max
+          empt_arr << k
+        end
+      end
+
+      if empt_arr.count > 1
+        return empt_arr.join("<br>").html_safe
+      else 
+        return empt_arr[0]
+      end
     end
 
     def feedpod_location_sequence(num)
@@ -57,7 +83,19 @@ class InsightsController < ApplicationController
       days.each do |day|
         arr_of_zone << day.feedpodrecords[num][:zone]
       end
-      return arr_of_zone.max_by { |i| arr_of_zone.count(i) }
+      hash_count = arr_of_zone.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+      empt_arr = []
+      hash_count.each do |k,v|
+        if v == hash_count.values.max
+          empt_arr << k
+        end
+      end
+
+      if empt_arr.count > 1
+        return empt_arr.join("<br>").html_safe
+      else 
+        return empt_arr[0]
+      end
     end
 
     @first_box = location_sequence(0)
@@ -66,6 +104,29 @@ class InsightsController < ApplicationController
     @feedpod_second_box = location_sequence(1)
     @third_box = location_sequence(2)
     @feedpod_third_box = location_sequence(2)
+
+
+    # find favourite location of non-feeding
+    def favourite_non_feeding_location(data)
+      arr = data.where(activity: "Other").pluck(:zone)
+      hash_count = arr.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+      empt_arr = []
+      hash_count.each do |k,v|
+        if v == hash_count.values.max
+          empt_arr << k
+        end
+      end
+
+      if empt_arr.count > 1
+        return empt_arr.join("<br>").html_safe
+      else 
+        return empt_arr[0]
+      end
+      # return arr.max_by { |i| arr.count(i) }
+    end
+
+    @non_feeding = favourite_non_feeding_location(Record)
+    @feedpod_non_feeding = favourite_non_feeding_location(Feedpodrecord)
     #-----------------------------------------------------------------------
 
 

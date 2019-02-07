@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :insights, only: [:index]
 
   get 'statics/exhibit'
-  get 'statics/dev'
 
   root 'insights#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

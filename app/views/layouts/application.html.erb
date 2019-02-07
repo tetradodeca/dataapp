@@ -27,14 +27,15 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <%= link_to "Full Data Insight", root_path, class: "dropdown-item" %>
         <%= link_to "Exhibit Layout", statics_exhibit_path, class: "dropdown-item" %>
-        <div class="dropdown-divider"></div>
-        <%= link_to "Dev", statics_dev_path, class: "dropdown-item" %>
+        <!-- <div class="dropdown-divider"></div> -->
       </div>
 
       <% if current_page?(dates_path) %>
-        <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %>
+        <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %> <span id="space">|</span>
+        <%= link_to "Export as CSV", dates_path(format: "csv"), class: "btn btn-info" %>
       <% elsif current_page?(feedpod_dates_path) %>
-        <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>
+        <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %> <span id="space">|</span>
+        <%= link_to "Export as CSV", feedpod_dates_path(format: "csv"), class: "btn btn-light" %>
       <% else %>
         <%= link_to "Go To Feedpod Index", feedpod_dates_path, class: "btn btn-success" %> <span id="space">|</span>
         <%= link_to "Go To W/O Feedpod Index", dates_path, class: "btn btn-warning" %>

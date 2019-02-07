@@ -29,6 +29,12 @@ class DatesController < ApplicationController
     end
     # @most_frequented_zone = zone_array.max_by { |i| zone_array.count(i) }
 
+    respond_to do |format|
+      format.html
+      format.csv { send_data @dates.to_csv}
+      format.xls { send_data @dates.to_csv(col_sep: "\t")}
+    end
+
   end
 
   def create

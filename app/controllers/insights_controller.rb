@@ -2,12 +2,12 @@ class InsightsController < ApplicationController
 
   def index
     # count number of days
-    @dates = Day.all
-    @records = Record.all
+    @dates = Day.all.count
+    @records = Record.all.count
     
     # count number of records
-    @feedpoddates = FeedpodDate.all
-    @feedpodrecords = Feedpodrecord.all
+    @feedpoddates = FeedpodDate.all.count
+    @feedpodrecords = Feedpodrecord.all.count
     
     # count max and min feeding times
     feeding_max = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max

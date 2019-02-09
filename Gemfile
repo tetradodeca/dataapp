@@ -40,7 +40,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development do
-  gem 'sqlite3'
+  gem 'pg', '~> 1.1', '>= 1.1.4'
 end
 
 group :production do

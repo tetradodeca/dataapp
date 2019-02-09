@@ -18,10 +18,18 @@ class InsightsController < ApplicationController
     # count average feeding time per night
     feeding_total_time = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).reduce(:+)
     num_of_days = Day.all.count
-    @feedingaveperday = feeding_total_time / num_of_days
+    if num_of_days == 0
+      @feedingaveperday = 0
+    else  
+      @feedingaveperday = feeding_total_time / num_of_days
+    end
     feedpod_feeding_total_time = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).reduce(:+)
     feedpod_num_of_days = FeedpodDate.all.count
-    @feedpod_feedingaveperday = feedpod_feeding_total_time / feedpod_num_of_days
+    if feedpod_num_of_days == 0
+      @feedpod_feedingaveperday = 0
+    else
+      @feedpod_feedingaveperday = feedpod_feeding_total_time / feedpod_num_of_days
+    end
 
     # find most frequented zone
     # zone_array = Record.pluck(:zone)
@@ -40,10 +48,14 @@ class InsightsController < ApplicationController
         end
       end
 
-      if empt_arr.count > 1
-        return empt_arr.join("<br>").html_safe
-      else 
-        return empt_arr[0]
+      if empt_arr.count == 0
+        return "-"
+      else
+        if empt_arr.count > 1
+          return empt_arr.join("<br>").html_safe
+        else 
+          return empt_arr[0]
+        end
       end
     end
 
@@ -70,10 +82,14 @@ class InsightsController < ApplicationController
         end
       end
 
-      if empt_arr.count > 1
-        return empt_arr.join("<br>").html_safe
-      else 
-        return empt_arr[0]
+      if empt_arr.count == 0
+        return "-"
+      else
+        if empt_arr.count > 1
+          return empt_arr.join("<br>").html_safe
+        else 
+          return empt_arr[0]
+        end
       end
     end
 
@@ -91,10 +107,14 @@ class InsightsController < ApplicationController
         end
       end
 
-      if empt_arr.count > 1
-        return empt_arr.join("<br>").html_safe
-      else 
-        return empt_arr[0]
+      if empt_arr.count == 0
+        return "-"
+      else
+        if empt_arr.count > 1
+          return empt_arr.join("<br>").html_safe
+        else 
+          return empt_arr[0]
+        end
       end
     end
 
@@ -117,12 +137,16 @@ class InsightsController < ApplicationController
         end
       end
 
-      if empt_arr.count > 1
-        return empt_arr.join("<br>").html_safe
-      else 
-        return empt_arr[0]
+      if empt_arr.count == 0
+        return "-"
+      else
+        if empt_arr.count > 1
+          return empt_arr.join("<br>").html_safe
+        else 
+          return empt_arr[0]
+        end
+        # return arr.max_by { |i| arr.count(i) }
       end
-      # return arr.max_by { |i| arr.count(i) }
     end
 
     @non_feeding = favourite_non_feeding_location(Record)
@@ -140,14 +164,22 @@ class InsightsController < ApplicationController
 
     def average_times_per_night_visited(location)
       num_of_normal_days = Day.all.count.to_f
-      total = Record.where(zone: location).count
-      return (total / num_of_normal_days).round(1)
+      if num_of_normal_days == 0
+        return 0
+      else
+        total = Record.where(zone: location).count
+        return (total / num_of_normal_days).round(1)
+      end
     end
 
     def feedpod_average_times_per_night_visited(location)
       feedpodnum_of_days = FeedpodDate.all.count.to_f
-      total = Feedpodrecord.where(zone: location).count
-      return (total / feedpodnum_of_days).round(1)
+      if feedpodnum_of_days == 0
+        return 0
+      else
+        total = Feedpodrecord.where(zone: location).count
+        return (total / feedpodnum_of_days).round(1)
+      end
     end
 
     def max_feeding_time(location)

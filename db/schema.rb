@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_01_30_065120) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "days", force: :cascade do |t|
     t.integer "date"
     t.datetime "created_at", null: false
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_01_30_065120) do
     t.integer "time_end"
     t.integer "total"
     t.string "activity"
-    t.integer "feedpod_date_id"
+    t.bigint "feedpod_date_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["feedpod_date_id"], name: "index_feedpodrecords_on_feedpod_date_id"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_01_30_065120) do
     t.integer "time_end"
     t.integer "total"
     t.string "activity"
-    t.integer "day_id"
+    t.bigint "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_records_on_day_id"
@@ -60,4 +63,6 @@ ActiveRecord::Schema.define(version: 2019_01_30_065120) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "feedpodrecords", "feedpod_dates"
+  add_foreign_key "records", "days"
 end

@@ -143,10 +143,34 @@ class InsightsController < ApplicationController
 
     @first_box = location_sequence(0)
     @feedpod_first_box = location_sequence(0)
-    @second_box = location_sequence(1)
-    @feedpod_second_box = location_sequence(1)
-    @third_box = location_sequence(2)
-    @feedpod_third_box = location_sequence(2)
+
+    second_box = location_sequence(1)
+    if second_box.nil?
+      @second_box = "-"
+    else
+      @second_box = second_box
+    end
+
+    third_box = location_sequence(2)
+    if third_box.nil?
+      @third_box = "-"
+    else
+      @third_box = third_box
+    end
+
+    feedpod_second_box = location_sequence(1)
+    if feedpod_second_box.nil?
+      @feedpod_second_box = "-"
+    else
+      @feedpod_second_box = feedpod_second_box
+    end
+
+    feedpod_third_box = location_sequence(2)
+    if feedpod_third_box.nil?
+      @feedpod_third_box = "-"
+    else
+      @feedpod_third_box = feedpod_third_box
+    end
 
 
     # find favourite location of non-feeding

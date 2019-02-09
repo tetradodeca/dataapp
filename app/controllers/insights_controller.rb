@@ -146,7 +146,7 @@ class InsightsController < ApplicationController
     end
 
     @first_box = location_sequence(0)
-    @feedpod_first_box = location_sequence(0)
+    @feedpod_first_box = feedpod_location_sequence(0)
 
     second_box = location_sequence(1)
     if second_box.nil?

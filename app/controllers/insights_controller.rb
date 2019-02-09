@@ -107,12 +107,10 @@ class InsightsController < ApplicationController
 
       if empt_arr.count == 0
         return "-"
-      else
-        if empt_arr.count > 1
-          return empt_arr.join("<br>").html_safe
-        else 
-          return empt_arr[0]
-        end
+      elsif empt_arr.count > 1 
+        return empt_arr.join("<br>").html_safe
+      else 
+        return empt_arr[0]
       end
     end
 
@@ -132,12 +130,10 @@ class InsightsController < ApplicationController
 
       if empt_arr.count == 0
         return "-"
-      else
-        if empt_arr.count > 1
-          return empt_arr.join("<br>").html_safe
-        else 
-          return empt_arr[0]
-        end
+      elsif empt_arr.count > 1
+        return empt_arr.join("<br>").html_safe
+      else 
+        return empt_arr[0]
       end
     end
 
@@ -158,14 +154,14 @@ class InsightsController < ApplicationController
       @third_box = third_box
     end
 
-    feedpod_second_box = location_sequence(1)
+    feedpod_second_box = feedpod_location_sequence(1)
     if feedpod_second_box.nil?
       @feedpod_second_box = "-"
     else
       @feedpod_second_box = feedpod_second_box
     end
 
-    feedpod_third_box = location_sequence(2)
+    feedpod_third_box = feedpod_location_sequence(2)
     if feedpod_third_box.nil?
       @feedpod_third_box = "-"
     else

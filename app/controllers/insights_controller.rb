@@ -10,10 +10,33 @@ class InsightsController < ApplicationController
     @feedpodrecords = Feedpodrecord.all
     
     # count max and min feeding times
-    @feeding_max = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
-    @feeding_min = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
-    @feedpodfeeding_max = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
-    @feedpodfeeding_min = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
+    feeding_max = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
+    if feeding_max.nil?
+      @feeding_max = 0
+    else
+      @feeding_max = feeding_max
+    end
+
+    feeding_min = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
+    if feeding_min.nil?
+      @feeding_min = 0
+    else
+      @feeding_min = feeding_min
+    end
+
+    feedpodfeeding_max = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).max
+    if feedpodfeeding_max.nil?
+      @feedpodfeeding_max = 0
+    else
+      @feedpodfeeding_max = feedpodfeeding_max
+    end
+
+    feedpodfeeding_min = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).min
+    if feedpodfeeding_min.nil?
+      @feedpodfeeding_min = 0
+    else
+      @feedpodfeeding_min = feedpodfeeding_min
+    end
     
     # count average feeding time per night
     feeding_total_time = Record.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).reduce(:+)

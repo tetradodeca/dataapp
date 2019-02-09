@@ -95,7 +95,11 @@ class InsightsController < ApplicationController
       days = Day.all
       arr_of_zone = []
       days.each do |day|
-        arr_of_zone.push(day.records[num][:zone])
+        if day.records[num].nil?
+          return "-"
+        else
+          arr_of_zone.push(day.records[num][:zone])
+        end
       end
       hash_count = arr_of_zone.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
       empt_arr = []
@@ -118,7 +122,11 @@ class InsightsController < ApplicationController
       days = FeedpodDate.all
       arr_of_zone = []
       days.each do |day|
-        arr_of_zone.push(day.feedpodrecords[num][:zone])
+        if day.feedpodrecords[num].nil?
+          return "-"
+        else
+          arr_of_zone.push(day.feedpodrecords[num][:zone])
+        end
       end
       hash_count = arr_of_zone.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
       empt_arr = []

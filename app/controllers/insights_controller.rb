@@ -95,13 +95,13 @@ class InsightsController < ApplicationController
       days = Day.all
       arr_of_zone = []
       days.each do |day|
-        arr_of_zone << day.records[num][:zone]
+        arr_of_zone.push(day.records[num][:zone])
       end
       hash_count = arr_of_zone.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
       empt_arr = []
       hash_count.each do |k,v|
         if v == hash_count.values.max
-          empt_arr << k
+          empt_arr.push(k)
         end
       end
 
@@ -118,13 +118,13 @@ class InsightsController < ApplicationController
       days = FeedpodDate.all
       arr_of_zone = []
       days.each do |day|
-        arr_of_zone << day.feedpodrecords[num][:zone]
+        arr_of_zone.push(day.feedpodrecords[num][:zone])
       end
       hash_count = arr_of_zone.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
       empt_arr = []
       hash_count.each do |k,v|
         if v == hash_count.values.max
-          empt_arr << k
+          empt_arr.push(k)
         end
       end
 

@@ -16,6 +16,16 @@ body {
   color: white;
 }
 
+.nav-link1 {
+  color: #ffb300 !important;
+  font-size: 1.1em;
+}
+
+.nav-link2 {
+  color: #66bb6a !important;
+  font-size: 1.1em;
+}
+
 .dropdown-menu {
   background-color: #33b5e5;
   min-width: 14rem;
@@ -114,12 +124,14 @@ body {
   color: #343a40;
 }
 
-thead {
+thead, .nav-link3 {
   color: #33b5e5 !important;
+  font-size: 1.1em;
 }
 
 #exhibitlabel {
   width: 80%;
   height: auto;
 }
+
 

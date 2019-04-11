@@ -16,6 +16,15 @@ body {
   color: white;
 }
 
+.visual {
+  background-color: #eeeeee;
+}
+
+.visual-title {
+  color: black;
+  text-align: center;
+}
+
 .nav-link1 {
   color: #ffb300 !important;
   font-size: 1.1em;

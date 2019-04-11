@@ -46,6 +46,7 @@ class InsightsController < ApplicationController
     else  
       @feedingaveperday = feeding_total_time / num_of_days
     end
+    
     feedpod_feeding_total_time = Feedpodrecord.where(activity: ["Feeding", "Scatter Feed"]).pluck(:total).reduce(:+)
     feedpod_num_of_days = FeedpodDate.all.count
     if feedpod_num_of_days == 0

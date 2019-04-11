@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   </head>
 
-  <body>
+  <body class="<%= @visual ? 'visual' : '' %>">
     <% flash.class %>
       <%-flash.each do |key,value| %>
         <% key %>
@@ -24,6 +24,7 @@
 
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <%= link_to "Full Data Insight", root_path, class: "dropdown-item" %>
+        <%= link_to "Data Visualisation", statics_visual_path, class: "dropdown-item" %>
         <%= link_to "Exhibit Layout", statics_exhibit_path, class: "dropdown-item" %>
         <!-- <div class="dropdown-divider"></div> -->
       </div>

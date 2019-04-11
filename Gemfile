@@ -10,6 +10,7 @@ gem 'devise', '~> 4.5'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.2', '>= 4.2.1'
 gem 'simple_form', '~> 4.1'
+gem 'chartkick'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

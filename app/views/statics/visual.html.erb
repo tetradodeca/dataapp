@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <br>
+  <h3 class="visual-title">Average Feeding Time Per Night</h3>
+  <br>
+	<%= column_chart [ { name: 'No Pod', data: @daily_total_feeding_times}, { name: 'WITH pod', data: @feedpod_daily_total_feeding_times} ], xtitle: "Day", ytitle: "Minutes" %>
+</div>
+
+
+
+
+
+

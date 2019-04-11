@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :insights, only: [:index]
 
+  get 'statics/visual'
   get 'statics/exhibit'
 
   root 'insights#index'

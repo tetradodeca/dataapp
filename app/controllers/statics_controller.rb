@@ -58,6 +58,7 @@ class StaticsController < ApplicationController
 			container.each do |k,v|
 				container[k] = v.count
 			end
+			container.keep_if { |k,v| k <= 30}
 			return container
 		end
 	

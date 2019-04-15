@@ -1,26 +1,50 @@
 <div class="container-fluid">
+	<br>
+  <h3 class="visual-title">Amount Of Movement Records Per Night</h3>
   <br>
-  <h3 class="visual-title">Average Feeding Times Per Night</h3>
+	<%= line_chart [ { name: 'No Pod', data: @record_count}, { name: 'WITH pod', data: @record_count_pod} ], xtitle: "Day", ytitle: "No. of records", messages: {empty: "No data"} %>
+
+
   <br>
-	<%= column_chart [ { name: 'No Pod', data: @daily_total_feeding_times}, { name: 'WITH pod', data: @feedpod_daily_total_feeding_times} ], xtitle: "Day", ytitle: "Minutes" %>
+  <h3 class="visual-title">Total Feeding Time Per Night</h3>
+  <br>
+	<%= area_chart [ { name: 'No Pod', data: @daily_total_feeding_times}, { name: 'WITH pod', data: @feedpod_daily_total_feeding_times} ], xtitle: "Day", ytitle: "Minutes", messages: {empty: "No data"} %>
+
+	<br>
+	<h3 class="visual-title">Amount of Non-Feeding Activity</h3>
+	<br>
+	<%= column_chart [ { name: 'No Pod', data: @other_count}, { name: 'WITH pod', data: @other_count_pod}], xtitle: "Day", ytitle: "No. of records", messages: {empty: "No data"} %>
+
+	<br>
+	<h3 class="visual-title">Zone Records Comparison</h3>
+	<br>
+	<%= bar_chart [ { name: 'No Pod', data: @location_records_count}, { name: 'WITH pod', data: @location_records_count_pod}], xtitle: "No. of records", ytitle: "Location", messages: {empty: "No data"} %>
+
+	<br>
+	<h3 class="visual-title">Zone Percentage W/O Pod</h3>
+	<br>
+	<%= pie_chart @pie_chart, messages: {empty: "No data"} %>	
+
+
+	<br>
+	<h3 class="visual-title">Zone Percentage With Pod</h3>
+	<br>
+	<%= pie_chart @pie_chart_pod, messages: {empty: "No data"} %>	
 
 
 	<br>
 	<h3 class="visual-title">Longest Feeding Times Per Night</h3>
 	<br>
-	<%= column_chart [ { name: 'No Pod', data: @longest_feeding_chart}, { name: 'WITH pod', data: @longest_feeding_chart_pod}], xtitle: "Day", ytitle: "Minutes" %>
+	<%= column_chart [ { name: 'No Pod', data: @longest_feeding_chart}, { name: 'WITH pod', data: @longest_feeding_chart_pod}], xtitle: "Day", ytitle: "Minutes", messages: {empty: "No data"} %>
 
 
 	<br>
 	<h3 class="visual-title">Shortest Feeding Times Per Night</h3>
 	<br>
-	<%= column_chart [ { name: 'No Pod', data: @shortest_feeding_chart}, { name: 'WITH pod', data: @shortest_feeding_chart_pod}], xtitle: "Day", ytitle: "Minutes" %>
+	<%= column_chart [ { name: 'No Pod', data: @shortest_feeding_chart}, { name: 'WITH pod', data: @shortest_feeding_chart_pod}], xtitle: "Day", ytitle: "Minutes", messages: {empty: "No data"} %>
 
 
-	<br>
-	<h3 class="visual-title">Counts of Non-Feeding Activity</h3>
-	<br>
-	<%= column_chart [ { name: 'No Pod', data: @other_count}, { name: 'WITH pod', data: @other_count_pod}], xtitle: "Day", ytitle: "Count" %>
+	
 </div>
 
 

@@ -1,8 +1,26 @@
 <div class="container-fluid">
   <br>
-  <h3 class="visual-title">Average Feeding Time Per Night</h3>
+  <h3 class="visual-title">Average Feeding Times Per Night</h3>
   <br>
 	<%= column_chart [ { name: 'No Pod', data: @daily_total_feeding_times}, { name: 'WITH pod', data: @feedpod_daily_total_feeding_times} ], xtitle: "Day", ytitle: "Minutes" %>
+
+
+	<br>
+	<h3 class="visual-title">Longest Feeding Times Per Night</h3>
+	<br>
+	<%= column_chart [ { name: 'No Pod', data: @longest_feeding_chart}, { name: 'WITH pod', data: @longest_feeding_chart_pod}], xtitle: "Day", ytitle: "Minutes" %>
+
+
+	<br>
+	<h3 class="visual-title">Shortest Feeding Times Per Night</h3>
+	<br>
+	<%= column_chart [ { name: 'No Pod', data: @shortest_feeding_chart}, { name: 'WITH pod', data: @shortest_feeding_chart_pod}], xtitle: "Day", ytitle: "Minutes" %>
+
+
+	<br>
+	<h3 class="visual-title">Counts of Non-Feeding Activity</h3>
+	<br>
+	<%= column_chart [ { name: 'No Pod', data: @other_count}, { name: 'WITH pod', data: @other_count_pod}], xtitle: "Day", ytitle: "Count" %>
 </div>
 
 

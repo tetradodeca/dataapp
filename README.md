@@ -4,7 +4,7 @@ An app for collecting and analysing data of animal behavioural research using ti
 
 ### Prerequisites
 
-ruby 2.4
-ruby on rails 5.2.2
-bundler 2.0.1
+ruby 2.4   
+ruby on rails 5.2.2   
+bundler 2.0.1   
 Postgres Database

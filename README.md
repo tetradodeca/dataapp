@@ -1,24 +1,10 @@
-# README
+# CWANG Data-app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app for collecting and analysing data of animal behavioural research using time/location ethogram.
 
-Things you may want to cover:
+### Prerequisites
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ruby 2.4
+ruby on rails 5.2.2
+bundler 2.0.1
+Postgres Database
